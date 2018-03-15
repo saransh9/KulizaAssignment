@@ -1,10 +1,13 @@
 package com.kulizaassignment.data.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by saransh on 15/03/18.
  */
 
-public class Location
+public class Location implements Parcelable
 {
     private String region;
 
@@ -21,6 +24,29 @@ public class Location
     private String lat;
 
     private String country;
+
+    protected Location(Parcel in) {
+        region = in.readString();
+        localtime = in.readString();
+        localtime_epoch = in.readString();
+        lon = in.readString();
+        tz_id = in.readString();
+        name = in.readString();
+        lat = in.readString();
+        country = in.readString();
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 
     public String getRegion ()
     {
@@ -106,5 +132,22 @@ public class Location
     public String toString()
     {
         return "ClassPojo [region = "+region+", localtime = "+localtime+", localtime_epoch = "+localtime_epoch+", lon = "+lon+", tz_id = "+tz_id+", name = "+name+", lat = "+lat+", country = "+country+"]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(region);
+        dest.writeString(localtime);
+        dest.writeString(localtime_epoch);
+        dest.writeString(lon);
+        dest.writeString(tz_id);
+        dest.writeString(name);
+        dest.writeString(lat);
+        dest.writeString(country);
     }
 }

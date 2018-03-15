@@ -1,10 +1,13 @@
 package com.kulizaassignment.data.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by saransh on 15/03/18.
  */
 
-public class Current
+public class Current implements Parcelable
 {
     private String temp_f;
 
@@ -45,6 +48,41 @@ public class Current
     private String precip_in;
 
     private String vis_miles;
+
+    protected Current(Parcel in) {
+        temp_f = in.readString();
+        condition = in.readParcelable(Condition.class.getClassLoader());
+        temp_c = in.readString();
+        wind_degree = in.readString();
+        wind_dir = in.readString();
+        wind_kph = in.readString();
+        is_day = in.readString();
+        pressure_in = in.readString();
+        humidity = in.readString();
+        vis_km = in.readString();
+        precip_mm = in.readString();
+        wind_mph = in.readString();
+        pressure_mb = in.readString();
+        feelslike_f = in.readString();
+        cloud = in.readString();
+        last_updated_epoch = in.readString();
+        feelslike_c = in.readString();
+        last_updated = in.readString();
+        precip_in = in.readString();
+        vis_miles = in.readString();
+    }
+
+    public static final Creator<Current> CREATOR = new Creator<Current>() {
+        @Override
+        public Current createFromParcel(Parcel in) {
+            return new Current(in);
+        }
+
+        @Override
+        public Current[] newArray(int size) {
+            return new Current[size];
+        }
+    };
 
     public String getTemp_f ()
     {
@@ -250,5 +288,34 @@ public class Current
     public String toString()
     {
         return "ClassPojo [temp_f = "+temp_f+", condition = "+condition+", temp_c = "+temp_c+", wind_degree = "+wind_degree+", wind_dir = "+wind_dir+", wind_kph = "+wind_kph+", is_day = "+is_day+", pressure_in = "+pressure_in+", humidity = "+humidity+", vis_km = "+vis_km+", precip_mm = "+precip_mm+", wind_mph = "+wind_mph+", pressure_mb = "+pressure_mb+", feelslike_f = "+feelslike_f+", cloud = "+cloud+", last_updated_epoch = "+last_updated_epoch+", feelslike_c = "+feelslike_c+", last_updated = "+last_updated+", precip_in = "+precip_in+", vis_miles = "+vis_miles+"]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(temp_f);
+        dest.writeParcelable(condition, flags);
+        dest.writeString(temp_c);
+        dest.writeString(wind_degree);
+        dest.writeString(wind_dir);
+        dest.writeString(wind_kph);
+        dest.writeString(is_day);
+        dest.writeString(pressure_in);
+        dest.writeString(humidity);
+        dest.writeString(vis_km);
+        dest.writeString(precip_mm);
+        dest.writeString(wind_mph);
+        dest.writeString(pressure_mb);
+        dest.writeString(feelslike_f);
+        dest.writeString(cloud);
+        dest.writeString(last_updated_epoch);
+        dest.writeString(feelslike_c);
+        dest.writeString(last_updated);
+        dest.writeString(precip_in);
+        dest.writeString(vis_miles);
     }
 }

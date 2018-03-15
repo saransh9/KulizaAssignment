@@ -1,10 +1,13 @@
 package com.kulizaassignment.data.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by saransh on 15/03/18.
  */
 
-public class Day
+public class Day implements Parcelable
 {
     private Condition condition;
 
@@ -35,6 +38,36 @@ public class Day
     private String avgvis_miles;
 
     private String maxwind_kph;
+
+    protected Day(Parcel in) {
+        condition = in.readParcelable(Condition.class.getClassLoader());
+        avghumidity = in.readString();
+        maxtemp_c = in.readString();
+        maxtemp_f = in.readString();
+        avgtemp_c = in.readString();
+        totalprecip_mm = in.readString();
+        mintemp_f = in.readString();
+        mintemp_c = in.readString();
+        totalprecip_in = in.readString();
+        uv = in.readString();
+        avgtemp_f = in.readString();
+        avgvis_km = in.readString();
+        maxwind_mph = in.readString();
+        avgvis_miles = in.readString();
+        maxwind_kph = in.readString();
+    }
+
+    public static final Creator<Day> CREATOR = new Creator<Day>() {
+        @Override
+        public Day createFromParcel(Parcel in) {
+            return new Day(in);
+        }
+
+        @Override
+        public Day[] newArray(int size) {
+            return new Day[size];
+        }
+    };
 
     public Condition getCondition ()
     {
@@ -190,5 +223,29 @@ public class Day
     public String toString()
     {
         return "ClassPojo [condition = "+condition+", avghumidity = "+avghumidity+", maxtemp_c = "+maxtemp_c+", maxtemp_f = "+maxtemp_f+", avgtemp_c = "+avgtemp_c+", totalprecip_mm = "+totalprecip_mm+", mintemp_f = "+mintemp_f+", mintemp_c = "+mintemp_c+", totalprecip_in = "+totalprecip_in+", uv = "+uv+", avgtemp_f = "+avgtemp_f+", avgvis_km = "+avgvis_km+", maxwind_mph = "+maxwind_mph+", avgvis_miles = "+avgvis_miles+", maxwind_kph = "+maxwind_kph+"]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(condition, flags);
+        dest.writeString(avghumidity);
+        dest.writeString(maxtemp_c);
+        dest.writeString(maxtemp_f);
+        dest.writeString(avgtemp_c);
+        dest.writeString(totalprecip_mm);
+        dest.writeString(mintemp_f);
+        dest.writeString(mintemp_c);
+        dest.writeString(totalprecip_in);
+        dest.writeString(uv);
+        dest.writeString(avgtemp_f);
+        dest.writeString(avgvis_km);
+        dest.writeString(maxwind_mph);
+        dest.writeString(avgvis_miles);
+        dest.writeString(maxwind_kph);
     }
 }
