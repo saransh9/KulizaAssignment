@@ -15,4 +15,6 @@ public interface SplashScreenViewContract {
     void dataFetched(Weather data,Boolean isErrorFound);
 
 
+
+
 }

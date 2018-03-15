@@ -9,7 +9,9 @@ import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -22,9 +24,12 @@ public class SplashScreenPresenter implements SplashScreenPresenterContract {
 
     private ApiCalls apiCalls;
 
+    private CompositeDisposable compositeDisposable;
+
     @Inject
     public SplashScreenPresenter(ApiCalls apiCalls) {
         this.apiCalls = apiCalls;
+        compositeDisposable = new CompositeDisposable();
     }
 
     void setView(SplashScreenActivity view) {
@@ -35,15 +40,10 @@ public class SplashScreenPresenter implements SplashScreenPresenterContract {
     @Override
     public void fetchData() {
         view.showLoader();
-        apiCalls.fetchweather("a997b16b788249869e374838181503")
+        compositeDisposable.add(apiCalls.fetchweather("a997b16b788249869e374838181503")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribeWith(new Observer<Weather>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
+                .subscribeWith(new DisposableObserver<Weather>() {
                     @Override
                     public void onNext(Weather weather) {
                         if (view != null) {
@@ -55,7 +55,7 @@ public class SplashScreenPresenter implements SplashScreenPresenterContract {
                     public void onError(Throwable e) {
                         if (view != null) {
                             view.showError();
-                            view.dataFetched(null,true);
+                            view.dataFetched(null, true);
                         }
                     }
 
@@ -63,6 +63,12 @@ public class SplashScreenPresenter implements SplashScreenPresenterContract {
                     public void onComplete() {
 
                     }
-                });
+                }));
+
+    }
+
+    @Override
+    public CompositeDisposable getDisposable() {
+        return compositeDisposable;
     }
 }

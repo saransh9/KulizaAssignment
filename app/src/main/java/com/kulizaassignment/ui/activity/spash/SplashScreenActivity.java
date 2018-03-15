@@ -15,6 +15,8 @@ import com.kulizaassignment.ui.base.BaseActivity;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * Created by saransh on 15/03/18.
  */
@@ -62,14 +64,23 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenVi
     public void dataFetched(Weather data, Boolean isErrorFound) {
         if (data != null && !isErrorFound) {
             Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("data",data);
             startActivity(i);
+            finish();
         } else
             Log.v(TAG + "datafetch", "something went wrong");
     }
+
 
 
     public void retryButtonClick(View v) {
         presenter.fetchData();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.getDisposable().clear();
+    }
 }
