@@ -7,6 +7,7 @@ import com.kulizaassignment.di.Scope.ActivityContext;
 import com.kulizaassignment.di.Scope.PerActivity;
 import com.kulizaassignment.di.module.ActivityModule;
 import com.kulizaassignment.ui.activity.main.MainActivity;
+import com.kulizaassignment.ui.activity.spash.SplashScreenActivity;
 
 import dagger.Component;
 
@@ -22,5 +23,6 @@ public interface ActivityComponent {
     Context getContext();
 
     void inject(MainActivity mainActivity);
+    void inject(SplashScreenActivity splashScreenActivity);
 
 }
