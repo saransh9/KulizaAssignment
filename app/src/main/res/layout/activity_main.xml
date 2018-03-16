@@ -15,13 +15,13 @@
         android:layout_height="match_parent"
         tools:context="com.kulizaassignment.ui.activity.main.MainActivity">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_170sdp"
             android:background="@drawable/banner"
             android:gravity="center"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,14 +39,15 @@
         </LinearLayout>
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/bottom_sheet_behavior">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="@dimen/_170sdp"
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+
+               />
 
 
-    </android.support.design.widget.CoordinatorLayout>
-</layout>
+</android.support.design.widget.CoordinatorLayout></layout>

@@ -12,6 +12,6 @@ import retrofit2.http.Query;
 
 public interface ApiCalls {
 
-    @GET("v1/forecast.json?q=Bengaluru&days=7")
+    @GET("v1/forecast.json?q=Bengaluru&days=6")
     Observable<Weather> fetchweather(@Query("key") String key);
 }
