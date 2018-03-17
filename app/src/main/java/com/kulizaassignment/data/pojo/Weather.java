@@ -7,13 +7,15 @@ import android.os.Parcelable;
  * Created by saransh on 15/03/18.
  */
 
-public class Weather implements Parcelable
-{
+public class Weather implements Parcelable {
     private Forecast forecast;
 
     private Location location;
 
     private Current current;
+
+    public Weather() {
+    }
 
     protected Weather(Parcel in) {
         forecast = in.readParcelable(Forecast.class.getClassLoader());
@@ -33,40 +35,33 @@ public class Weather implements Parcelable
         }
     };
 
-    public Forecast getForecast ()
-    {
+    public Forecast getForecast() {
         return forecast;
     }
 
-    public void setForecast (Forecast forecast)
-    {
+    public void setForecast(Forecast forecast) {
         this.forecast = forecast;
     }
 
-    public Location getLocation ()
-    {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation (Location location)
-    {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
-    public Current getCurrent ()
-    {
+    public Current getCurrent() {
         return current;
     }
 
-    public void setCurrent (Current current)
-    {
+    public void setCurrent(Current current) {
         this.current = current;
     }
 
     @Override
-    public String toString()
-    {
-        return "Weather [forecast = "+forecast+", location = "+location+", current = "+current+"]";
+    public String toString() {
+        return "Weather [forecast = " + forecast + ", location = " + location + ", current = " + current + "]";
     }
 
     @Override

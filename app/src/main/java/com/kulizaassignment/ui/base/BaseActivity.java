@@ -14,7 +14,7 @@ import com.kulizaassignment.di.module.ActivityModule;
  * Created by saransh on 15/03/18.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     ActivityComponent activityComponent;
 

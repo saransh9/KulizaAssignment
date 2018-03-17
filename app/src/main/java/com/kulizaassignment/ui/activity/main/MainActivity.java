@@ -6,7 +6,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,6 +103,7 @@ public class MainActivity extends BaseActivity implements MainActivityViewContra
                     if (MARGIN_TOP + 30 > INITIAL_HEIGHT_VIEW) {
                         marginLayoutParams.setMargins(0, (int) (INITIAL_HEIGHT_VIEW), 0, 0);
                         MARGIN_TOP = INITIAL_HEIGHT_VIEW;
+                        this.cancel();
                     } else {
                         marginLayoutParams.setMargins(0, (int) (MARGIN_TOP + 30), 0, 0);
                         MARGIN_TOP = MARGIN_TOP + 30;
@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity implements MainActivityViewContra
                 }
             }
         };
-        animation.setDuration(120);
+        animation.setDuration(300);
         animation.setInterpolator(new AccelerateInterpolator());
 
         return animation;

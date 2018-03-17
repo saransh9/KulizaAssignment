@@ -1,16 +1,12 @@
 package com.kulizaassignment.ui.activity.spash;
 
-import android.view.View;
-
 import com.kulizaassignment.data.ApiCalls;
 import com.kulizaassignment.data.pojo.Weather;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -20,19 +16,21 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SplashScreenPresenter implements SplashScreenPresenterContract {
 
-    private SplashScreenActivity view;
+    public SplashScreenActivity view;
 
     private ApiCalls apiCalls;
 
     private CompositeDisposable compositeDisposable;
 
+
     @Inject
     public SplashScreenPresenter(ApiCalls apiCalls) {
         this.apiCalls = apiCalls;
         compositeDisposable = new CompositeDisposable();
+
     }
 
-    void setView(SplashScreenActivity view) {
+    public void setView(SplashScreenActivity view) {
         this.view = view;
     }
 
@@ -71,4 +69,5 @@ public class SplashScreenPresenter implements SplashScreenPresenterContract {
     public CompositeDisposable getDisposable() {
         return compositeDisposable;
     }
+
 }
